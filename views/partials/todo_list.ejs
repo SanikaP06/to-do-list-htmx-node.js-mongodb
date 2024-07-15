@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <ul id="todo-list" class="list-disc pl-5 rounded">
     <% todos.forEach(todo => { %>
         <li class="flex items-center mb-2">
@@ -16,4 +17,24 @@
         </li>
     <% }); %>
 </ul>
+=======
+<ul id="todo-list" class="list-disc pl-5 rounded">
+    <% todos.forEach(todo => { %>
+        <li class="flex items-center mb-2">
+            <div class="flex-1 p-2 border border-black rounded">
+                <span><%= todo.task %></span>
+                <% if (todo.deadline) { %>
+                    <span class="text-sm text-gray-500 ml-2">(Due: <%= new Date(todo.deadline).toLocaleDateString() %>)</span>
+                <% } %>
+                <% if (!todo.completed) { %>
+                    <button class="ml-2 p-2 bg-green-500 text-white rounded" hx-post="/complete/<%= todo._id %>" hx-target="#todo-container" hx-swap="innerHTML">Complete</button>
+                <% } %>
+            </div>
+            <% if (todo.completed) { %>
+                <button class="ml-2 text-red-500 delete-button" hx-post="/delete/<%= todo._id %>" hx-target="#todo-container" hx-swap="innerHTML">Delete</button>
+            <% } %>
+        </li>
+    <% }); %>
+</ul>
+>>>>>>> 4646071 (Initial commit)
 <p>Total tasks not completed: <%= notCompletedCount %></p>
